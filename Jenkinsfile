@@ -1,4 +1,5 @@
 #!/usr/bin/env groovy
+def DOCKERHUB_CREDENTIALS // Define DOCKERHUB_CREDENTIALS at the top level
 
 node {
     stage('checkout') {
@@ -27,7 +28,7 @@ node {
     }
 
    environment {
-      DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+     def  DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
    
 
