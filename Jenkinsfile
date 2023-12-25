@@ -29,6 +29,10 @@ node {
    environment {
       DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
+   
+   tools {
+     docker 'latest'
+    }
 
    stage('Docker Login') {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
