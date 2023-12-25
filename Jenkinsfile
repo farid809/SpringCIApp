@@ -28,7 +28,7 @@ node {
     }
 
    environment {
-     def  DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+       DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
    
 
