@@ -45,7 +45,7 @@ node {
                         // You can now perform Docker-related actions here
                         // For example, you can build and push Docker images
                     
-       sh "./gradlew bootJar jib -Pprod -PjibArchitecture=amd64 -Djib.to.image=farid809/springCI  --no-daemon"
+       sh "./gradlew bootJar jib -Pprod -PjibArchitecture=amd64 -Djib.to.image=farid809/springci  --no-daemon"
     }
 }
 }
