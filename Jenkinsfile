@@ -31,10 +31,9 @@ node {
     }
 
    stage('Docker Login') {
-      steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-      }
     }
+
     def dockerImage
     stage('publish docker') {
         // A pre-requisite to this step is to setup authentication to the docker registry
