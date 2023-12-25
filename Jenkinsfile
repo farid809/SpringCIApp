@@ -27,7 +27,7 @@ node {
           sh "docker image ls"
     }
 
-
+    }
     stage('check java') {
         sh "java -version"
     }
