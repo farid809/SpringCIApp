@@ -30,9 +30,9 @@ node {
       DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
    
-   tools {
-     docker 'latest'
-    }
+
+
+
 
    stage('Docker Login') {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
@@ -42,6 +42,6 @@ node {
     stage('publish docker') {
         // A pre-requisite to this step is to setup authentication to the docker registry
         // https://github.com/GoogleContainerTools/jib/tree/master/jib-gradle-plugin#authentication-methods
-        sh "./gradlew bootJar jib -Pprod -PnodeInstall --no-daemon"
+        sh "./gradlew bootJar jib -Pprod -PjibArchitecture=amd64 -Djib.to.image=farid809/springCI  --no-daemon"
     }
 }
