@@ -34,14 +34,17 @@ node {
 
 
 
-   stage('Docker Login') {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-    }
+ 
 
-    def dockerImage
+   
     stage('publish docker') {
         // A pre-requisite to this step is to setup authentication to the docker registry
         // https://github.com/GoogleContainerTools/jib/tree/master/jib-gradle-plugin#authentication-methods
-        sh "./gradlew bootJar jib -Pprod -PjibArchitecture=amd64 -Djib.to.image=farid809/springCI  --no-daemon"
+       docker.withRegistry('https://hub.docker.com', DOCKERHUB_CREDENTIALS) {
+                        // You can now perform Docker-related actions here
+                        // For example, you can build and push Docker images
+                    
+       sh "./gradlew bootJar jib -Pprod -PjibArchitecture=amd64 -Djib.to.image=farid809/springCI  --no-daemon"
     }
+}
 }
