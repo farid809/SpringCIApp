@@ -5,6 +5,28 @@ node {
     stage('checkout') {
         checkout scm
     }
+   
+    environment {
+       DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    }
+
+
+
+
+
+
+
+
+    stage('TestDocker Access') {
+        // A pre-requisite to this step is to setup authentication to the docker registry
+        // https://github.com/GoogleContainerTools/jib/tree/master/jib-gradle-plugin#authentication-methods
+       docker.withRegistry('https://hub.docker.com', DOCKERHUB_CREDENTIALS) {
+                        // You can now perform Docker-related actions here
+                        // For example, you can build and push Docker images
+          
+          sh "docker image ls"
+    }
+
 
     stage('check java') {
         sh "java -version"
@@ -26,16 +48,6 @@ node {
         sh "./gradlew bootJar -x test -Pprod -PnodeInstall --no-daemon"
         archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
     }
-
-   environment {
-       DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-    }
-   
-
-
-
-
- 
 
    
     stage('publish docker') {
