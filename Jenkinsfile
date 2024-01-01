@@ -20,12 +20,12 @@ node {
     stage('TestDocker Access') {
         // A pre-requisite to this step is to setup authentication to the docker registry
         // https://github.com/GoogleContainerTools/jib/tree/master/jib-gradle-plugin#authentication-methods
-       docker.withRegistry('https://hub.docker.com', DOCKERHUB_CREDENTIALS) {
+    //   docker.withRegistry('https://hub.docker.com', DOCKERHUB_CREDENTIALS) {
                         // You can now perform Docker-related actions here
                         // For example, you can build and push Docker images
           
-          sh "docker image ls"
-    }
+      //    sh "docker image ls"
+    //}
 
     }
     stage('check java') {
